@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pl" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JobHunt</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header_container">
+        <div class="header_brand">
+          <h1 class="header_title">
+            <img
+              src="favicon.ico"
+              alt="ikona"
+              style="position: relative; top: 0.3rem"
+            />
+            JobHunt
+          </h1>
+          <p class="header_subtitle">Znajdź swoją wymarzoną pracę!</p>
+        </div>
+        <button class="header_theme">
+          <img
+            src="img\ksiezyc.png"
+            style="width: 1.6rem; height: 1.6rem; vertical-align: middle"
+          />
+        </button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="job-selector">
+        <div class="job-selector_container">
+          <h2>Wybierz kategorię pracy</h2>
+          <div class="job-selector_buttons">
+            <button class="job-selector_btn job-selector_btn--active">
+              <img
+                src="img\clipboard.png"
+                style="width: 1.6rem; height: 1.6rem; vertical-align: middle"
+              />
+              Wszystkie oferty
+            </button>
+            <button class="job-selector_btn">
+              <img
+                src="img\laptop.png"
+                style="width: 2.3rem; height: 2.3rem; vertical-align: middle"
+              />
+              Oferty IT
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <div class="controls">
+        <div class="controls_container">
+          <div class="controls_left">
+            <button id="favoritesBtn" class="btn btn--secondary">
+              <img
+                src="img\serce.png"
+                style="width: 1.6rem; height: 1.6rem; vertical-align: middle"
+              />
+              Ulubione
+            </button>
+            <button id="filterBtn" class="btn btn--secondary">
+              <img
+                src="img\lejek.png"
+                style="width: 1.6rem; height: 1.6rem; vertical-align: middle"
+              />
+              Filtry
+            </button>
+            <button id="resetFilterBtn" class="btn btn--secondary">
+              ↺ Resetuj
+            </button>
+          </div>
+          <input
+            type="text"
+            id="searchJobs"
+            class="controls_search"
+            placeholder="Szukaj ofert..."
+          />
+          <button id="compareBtn" class="btn btn--primary">Porównaj</button>
+        </div>
+      </div>
+
+      <div class="loading" style="display: none">
+        <div class="loading_spinner"></div>
+        <p>Ładowanie ofert...</p>
+      </div>
+
+      <div class="empty-state" style="display: none">Brak ofert</div>
+
+      <div class="jobs-grid"></div>
+    </main>
+
+    <job-model></job-model>
+    <filter-model></filter-model>
+    <comparison-model></comparison-model>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
