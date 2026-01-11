@@ -113,6 +113,165 @@ class JobCard extends HTMLElement {
                 : '';
 
         this.innerHTML = `
+        <style>
+        .job-card {
+          background: var(--card-color, #1a1a2e);
+          border-radius: 12px;
+          padding: 20px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          transition: all 0.3s ease;
+          cursor: pointer;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          height: 100%;
+          color: var(--text-primary);
+        }
+
+        .job-card:hover {
+          border-color: var(--primary-color);
+          box-shadow: 0px 2px 12px 1px var(--primary-color);
+        }
+
+        .job-card_header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          gap: 12px;
+        }
+
+        .job-card_title {
+          font-size: 16px;
+          font-weight: 600;
+          color: var(--text-primary);
+          line-height: 1.4;
+          flex: 1;
+        }
+
+        .job-card_actions {
+          display: flex;
+          gap: 8px;
+        }
+
+        .job-card_icon-btn {
+          background: none;
+          border: none;
+          font-size: 20px;
+          cursor: pointer;
+          padding: 4px;
+          transition: all 0.2s ease;
+          opacity: 0.6;
+        }
+
+        .job-card_icon-btn:hover {
+          opacity: 1;
+          transform: scale(1.15);
+        }
+
+        .job-card_icon-btn.active {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+
+        .job-card_company {
+          font-size: 13px;
+          color: var(--text-primary);
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .job-card_meta {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          font-size: 13px;
+          color: var(--text-primary);
+        }
+
+        .job-card_meta-item {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        }
+
+        .job-card_salary {
+          color: var(--salary-color);
+          font-weight: 600;
+          font-size: 14px;
+        }
+
+        .job-card_expired {
+          color: #ff5459;
+          font-weight: 600;
+          font-size: 13px;
+        }
+
+        .job-card_expires-soon {
+          color: #ffa500;
+          font-weight: 600;
+          font-size: 13px;
+        }
+
+        .job-card_expires {
+          color: var(--salary-color);
+          font-weight: 600;
+          font-size: 13px;
+        }
+
+        .job-card_badges {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+          margin-top: 8px;
+        }
+
+        .job-card_badge {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 6px 12px;
+          background: linear-gradient(135deg, rgba(101, 69, 109, 0.2), rgba(144, 50, 198, 0.1));
+          color: var(--salary-color);
+          border: 1px solid var(--primary-dark);
+          border-radius: 16px;
+          font-size: 12px;
+          font-weight: 500;
+          white-space: nowrap;
+          transition: all 0.2s ease;
+        }
+
+        .job-card_badge:hover {
+          background: linear-gradient(135deg, rgba(103, 80, 109, 0.2), rgba(144, 50, 198, 0.1));
+          transform: translateY(-2px);
+          border-color: var(--primary-color);
+        }
+
+        .job-card_footer {
+          display: flex;
+          gap: 8px;
+          margin-top: auto;
+        }
+
+        .job-card_btn {
+          flex: 1;
+          padding: 8px 12px;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          background: var(--primary-color);
+          color: rgba(255, 255, 255, 0.8);
+          border-radius: 6px;
+          font-size: 12px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .job-card_btn:hover {
+          background: var(--primary-dark);
+          border-color: rgba(255, 255, 255, 0.3);
+        }
+      </style>
+      
       <div class="job-card">
         <div class="job-card_header">
           <h3 class="job-card_title">${this.escapeHtml(title)}</h3>

@@ -48,87 +48,290 @@ class JobModel extends HTMLElement {
         }
 
         shadow.innerHTML = `
+        <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        :host {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 999;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.3s ease;
+        }
+
+        :host(.open) {
+          opacity: 1;
+          pointer-events: auto;
+        }
+
+        .overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.6);
+          z-index: -1;
+        }
+
+        .model {
+          position: relative;
+          background: var(--color-surface, #1a1a2e);
+          border-radius: 12px;
+          width: 90%;
+          max-width: 600px;
+          max-height: 90vh;
+          overflow-y: auto;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+          display: flex;
+          flex-direction: column;
+          z-index: 1000;
+        }
+
+        .model_header {
+          padding: 24px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          gap: 16px;
+          flex-shrink: 0;
+        }
+
+        .model_close {
+          background: none;
+          border: none;
+          color: rgba(255, 255, 255, 0.6);
+          font-size: 24px;
+          cursor: pointer;
+          padding: 0;
+          width: 32px;
+          height: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 4px;
+          transition: all 0.2s ease;
+          flex-shrink: 0;
+        }
+
+        .model_close:hover {
+          background: rgba(255, 255, 255, 0.1);
+          color: rgba(255, 255, 255, 0.9);
+        }
+
+        .model_title {
+          flex: 1;
+          color: rgba(255, 255, 255, 0.95);
+          font-size: 20px;
+          font-weight: 600;
+          line-height: 1.4;
+        }
+
+        .model_body {
+          padding: 24px;
+          flex: 1;
+          overflow-y: auto;
+        }
+
+        .section {
+          margin-bottom: 24px;
+        }
+
+        .section:last-child {
+          margin-bottom: 0;
+        }
+
+        .section_label {
+          color: rgba(255, 255, 255, 0.5);
+          font-size: 12px;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin-bottom: 8px;
+        }
+
+        .section_value {
+          color: rgba(255, 255, 255, 0.9);
+          font-size: 14px;
+          line-height: 1.6;
+        }
+
+        .info-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+          margin-bottom: 24px;
+        }
+
+        .info-item {
+          padding: 12px;
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 8px;
+          border-left: 3px solid var(--primary-color);
+        }
+
+        .info-item_label {
+          color: rgba(255, 255, 255, 0.5);
+          font-size: 11px;
+          text-transform: uppercase;
+          margin-bottom: 4px;
+        }
+
+        .info-item_value {
+          color: rgba(255, 255, 255, 0.95);
+          font-size: 14px;
+          font-weight: 600;
+        }
+
+        .model_footer {
+          padding: 24px;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          display: flex;
+          gap: 12px;
+          justify-content: flex-end;
+          flex-shrink: 0;
+        }
+
+        .btn {
+          padding: 10px 20px;
+          border-radius: 6px;
+          border: none;
+          font-size: 14px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .btn--primary {
+          background: var(--primary-color);
+          color: #fff;
+        }
+
+        .btn--primary:hover {
+          opacity: 0.9;
+          transform: translateY(-2px);
+        }
+
+        .btn--secondary {
+          background: rgba(255, 255, 255, 0.1);
+          color: rgba(255, 255, 255, 0.9);
+        }
+
+        .btn--secondary:hover {
+          background: rgba(255, 255, 255, 0.15);
+        }
+
+        .model_body::-webkit-scrollbar {
+          width: 8px;
+        }
+
+        .model_body::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.05);
+        }
+
+        .model_body::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 4px;
+        }
+
+        .model_body::-webkit-scrollbar-thumb:hover {
+          background: rgba(255, 255, 255, 0.3);
+        }
+      </style>
+      
       <div class="overlay"></div>
 
       <div class="model">
-        <div class="model__header">
-          <h2 class="model__title">${this.escapeHtml(job.title)}</h2>
-          <button class="model__close" type="button">✕</button>
+        <div class="model_header">
+          <h2 class="model_title">${this.escapeHtml(job.title)}</h2>
+          <button class="model_close" type="button">✕</button>
         </div>
 
-        <div class="model__body">
+        <div class="model_body">
           <div class="info-grid">
             <div class="info-item">
-              <div class="info-item__label">
+              <div class="info-item_label">
                 <img
                     src="../img/pinezka.png"
                     style="width: 1.6rem; height: 1.6rem; vertical-align: middle"
                 />
                 Lokalizacja
               </div>
-              <div class="info-item__value">${this.escapeHtml(
+              <div class="info-item_value">${this.escapeHtml(
                   job.location
               )}</div>
             </div>
             <div class="info-item">
-              <div class="info-item__label">
+              <div class="info-item_label">
                 <img
                     src="../img/budynek.png"
                     style="width: 1.6rem; height: 1.6rem; vertical-align: middle"
                 />
                 Firma</div>
-              <div class="info-item__value">${this.escapeHtml(
+              <div class="info-item_value">${this.escapeHtml(
                   job.company
               )}</div>
             </div>
             <div class="info-item">
-              <div class="info-item__label">
+              <div class="info-item_label">
                 <img
                     src="../img/teczka.png"
                     style="width: 1.6rem; height: 1.6rem; vertical-align: middle"
                 />
                 Typ Umowy</div>
-              <div class="info-item__value">${this.escapeHtml(job.type)}</div>
+              <div class="info-item_value">${this.escapeHtml(job.type)}</div>
             </div>
             <div class="info-item">
-              <div class="info-item__label">
+              <div class="info-item_label">
                 <img
                     src="../img/pensja.png"
                     style="width: 1.6rem; height: 1.6rem; vertical-align: middle"
                 />
                 Wynagrodzenie</div>
-              <div class="info-item__value">${job.salary_min} - ${
+              <div class="info-item_value">${job.salary_min} - ${
             job.salary_max
         } PLN</div>
             </div>
           </div>
 
           <div class="section">
-            <div class="section__label">
+            <div class="section_label">
                 <img
                     src="../img/kalendarz.png"
                     style="width: 1.6rem; height: 1.6rem; vertical-align: middle"
                 />
                 Data Opublikowania</div>
-            <div class="section__value">${postedDate}</div>
+            <div class="section_value">${postedDate}</div>
           </div>
 
           <div class="section">
-            <div class="section__label">
+            <div class="section_label">
                 <img
                     src="../img/alarm.png"
                     style="width: 1.6rem; height: 1.6rem; vertical-align: middle"
                 />
                 Data Końca Rekrutacji</div>
-            <div class="section__value">${endsDate}</div>
+            <div class="section_value">${endsDate}</div>
           </div>
 
           ${
               requirements
                   ? `
             <div class="section">
-              <div class="section__label">✓ Wymagania</div>
-              <div class="section__value">${this.escapeHtml(requirements)}</div>
+              <div class="section_label">✓ Wymagania</div>
+              <div class="section_value">${this.escapeHtml(requirements)}</div>
             </div>
           `
                   : ''
@@ -138,20 +341,20 @@ class JobModel extends HTMLElement {
               benefits
                   ? `
             <div class="section">
-              <div class="section__label">
+              <div class="section_label">
                 <img
                     src="../img/prezent.png"
                     style="width: 1.6rem; height: 1.6rem; vertical-align: middle"
                 />
                 Benefity</div>
-              <div class="section__value">${this.escapeHtml(benefits)}</div>
+              <div class="section_value">${this.escapeHtml(benefits)}</div>
             </div>
           `
                   : ''
           }
         </div>
 
-        <div class="model__footer">
+        <div class="model_footer">
           <button class="btn btn--secondary" data-action="close" type="button">Zamknij</button>
           <button class="btn btn--primary" data-action="apply" type="button">Aplikuj teraz</button>
         </div>
@@ -163,7 +366,7 @@ class JobModel extends HTMLElement {
     }
 
     setupEventListeners() {
-        const closeBtn = this.shadowRoot.querySelector('.model__close');
+        const closeBtn = this.shadowRoot.querySelector('.model_close');
         const overlay = this.shadowRoot.querySelector('.overlay');
         const closeFooterBtn = this.shadowRoot.querySelector(
             '[data-action="close"]'

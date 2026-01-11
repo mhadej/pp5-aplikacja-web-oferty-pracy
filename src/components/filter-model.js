@@ -57,6 +57,187 @@ class FilterModel extends HTMLElement {
                 : '';
 
         shadow.innerHTML = `
+            <style>
+                :host {
+                    display: none;
+                }
+                :host(.open) {
+                    display: block;
+                }
+                .overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.5);
+                    display: flex;
+                    align-items: flex-end;
+                    z-index: 1000;
+                    animation: fadeIn 0.2s;
+                }
+                @media (min-width: 768px) {
+                    .overlay {
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+                .model {
+                    background: var(--bg-card);
+                    border-radius: 12px 12px 0 0;
+                    width: 100%;
+                    max-width: 500px;
+                    max-height: 90vh;
+                    overflow-y: auto;
+                    position: relative;
+                    animation: slideUp 0.3s;
+                    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+                }
+                @media (min-width: 768px) {
+                    .model {
+                        border-radius: 12px;
+                        width: 90%;
+                    }
+                }
+                @keyframes slideUp {
+                    from {
+                        transform: translateY(100%);
+                    }
+                    to {
+                        transform: translateY(0);
+                    }
+                }
+                .model_header {
+                    padding: 20px;
+                    border-bottom: 1px solid var(--border-color);
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    position: sticky;
+                    top: 0;
+                    background: var(--bg-card);
+                }
+                .model_title {
+                    margin: 0;
+                    font-size: 1.3rem;
+                    font-weight: 600;
+                }
+                .model_close {
+                    background: none;
+                    border: none;
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    padding: 0;
+                    color: var(--text-primary);
+                }
+                .model_body {
+                    padding: 20px;
+                }
+                .filter_section {
+                    margin-bottom: 24px;
+                }
+                .filter_title {
+                    margin: 0 0 12px 0;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    color: var(--text-primary);
+                }
+                .filter_options {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    padding-right: 8px;
+                }
+                .filter_options::-webkit-scrollbar {
+                    width: 6px;
+                }
+                .filter_options::-webkit-scrollbar-track {
+                    background: var(--bg-secondary);
+                    border-radius: 3px;
+                }
+                .filter_options::-webkit-scrollbar-thumb {
+                    background: var(--border-color);
+                    border-radius: 3px;
+                }
+                .filter_options::-webkit-scrollbar-thumb:hover {
+                    background: var(--primary-color);
+                }
+                .filter_checkbox {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    cursor: pointer;
+                    user-select: none;
+                }
+                .filter_checkbox input {
+                    cursor: pointer;
+                    width: 18px;
+                    height: 18px;
+                }
+                .filter_checkbox span {
+                    color: var(--text-primary);
+                }
+                .filter_range {
+                    display: flex;
+                    gap: 12px;
+                    align-items: center;
+                }
+                .filter_range-input {
+                    flex: 1;
+                    padding: 8px 12px;
+                    border: 1px solid var(--border-color);
+                    border-radius: 6px;
+                    background: var(--bg-secondary);
+                    color: var(--text-primary);
+                }
+                .filter_range-value {
+                    min-width: 60px;
+                    text-align: center;
+                    font-weight: 600;
+                    color: var(--primary-color);
+                }
+                .model_footer {
+                    padding: 20px;
+                    border-top: 1px solid var(--border-color);
+                    display: flex;
+                    gap: 12px;
+                    position: sticky;
+                    bottom: 0;
+                    background: var(--bg-card);
+                }
+                .model_btn {
+                    flex: 1;
+                    padding: 12px 20px;
+                    border: none;
+                    border-radius: 8px;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.2s;
+                }
+                .model_btn--primary {
+                    background: var(--primary-color);
+                    color: white;
+                }
+                .model_btn--primary:hover {
+                    background: var(--primary-dark);
+                }
+                .model_btn--secondary {
+                    background: var(--bg-secondary);
+                    color: var(--text-primary);
+                    border: 1px solid var(--border-color);
+                }
+                .model_btn--secondary:hover {
+                    background: var(--bg-tertiary);
+                }
+            </style>
+
             <div class="overlay">
                 <div class="model">
                     <div class="model_header">

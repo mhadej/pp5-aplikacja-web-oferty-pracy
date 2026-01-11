@@ -19,6 +19,171 @@ export default class ComparisonModel extends HTMLElement {
             : '<p>Brak danych do porównania</p>';
 
         shadow.innerHTML = `
+        <style>
+        :host {
+          all: initial;
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.7);
+          z-index: 1000;
+          padding: 20px;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        :host(.open) {
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .comparison-model {
+          background: #1a1a2e;
+          border-radius: 12px;
+          padding: 30px;
+          max-width: 90vw;
+          max-height: 90vh;
+          overflow-y: auto;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+          color: rgba(255, 255, 255, 0.8);
+        }
+
+        .comparison-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 20px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          padding-bottom: 15px;
+          gap: 15px;
+        }
+
+        .comparison-header h2 {
+          margin: 0;
+          color: rgba(255, 255, 255, 0.95);
+          font-size: 24px;
+          flex: 1;
+        }
+
+        .comparison-count {
+          background: var(--primary-color);
+          color: white;
+          padding: 6px 12px;
+          border-radius: 20px;
+          font-size: 14px;
+          font-weight: 600;
+          white-space: nowrap;
+        }
+
+        .comparison-close {
+          background: none;
+          border: none;
+          font-size: 28px;
+          color: rgba(255, 255, 255, 0.6);
+          cursor: pointer;
+          padding: 0;
+          width: 30px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.2s ease;
+        }
+
+        .comparison-close:hover {
+          color: rgba(255, 255, 255, 0.95);
+          transform: scale(1.1);
+        }
+
+        .comparison-content {
+          flex: 1;
+          overflow-y: auto;
+          margin-bottom: 20px;
+        }
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 14px;
+        }
+
+        th {
+          background: #1f0947;
+          color: snow;
+          padding: 12px;
+          text-align: left;
+          border: 1px solid var(--primary-dark);
+          font-weight: 600;
+          position: sticky;
+          top: 0;
+        }
+
+        td {
+          padding: 12px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        tr:nth-child(even) {
+          background: rgba(255, 255, 255, 0.02);
+        }
+
+        .comparison-footer {
+          display: flex;
+          gap: 10px;
+          padding-top: 20px;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn {
+          flex: 1;
+          padding: 12px 20px;
+          border: none;
+          border-radius: 6px;
+          font-size: 14px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+        }
+
+        .btn-close {
+          background: rgba(255, 255, 255, 0.05);
+          color: rgba(255, 255, 255, 0.8);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-close:hover {
+          background: rgba(255, 255, 255, 0.1);
+          border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-clear {
+          background: linear-gradient(135deg, var(--primary-dark), #3c197e);
+          color: white;
+          border: none;
+        }
+
+        .btn-clear:hover {
+          background: linear-gradient(235deg, var(--primary-dark), #3c197e);
+          box-shadow: 0 4px 12px black;
+          transform: translateY(-2px);
+        }
+
+        .btn-clear:active {
+          transform: translateY(0);
+        }
+      </style>
       <div class="comparison-model">
         <div class="comparison-header">
           <h2>Porównanie ofert</h2>

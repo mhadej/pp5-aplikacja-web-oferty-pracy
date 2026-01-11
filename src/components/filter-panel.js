@@ -2,6 +2,153 @@ import store from '../store.js';
 
 const template = document.createElement('template');
 template.innerHTML = `
+<style>
+    :host {
+        display: block;
+    }
+    :host(.open) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        display: flex;
+        align-items: flex-end;
+    }
+    .filter-panel {
+        background: var(--bg-card);
+        width: 100%;
+        border-radius: 12px 12px 0 0;
+        padding: 24px;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    @media (min-width: 1024px) {
+        :host.open .filter-panel {
+            position: relative;
+            width: auto;
+            border-radius: 12px;
+            margin: auto;
+        }
+    }
+    .filter-panel_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+    .filter-panel_title {
+        margin: 0;
+        color: var(--text-primary);
+    }
+    .filter-panel_close {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    .filter-section {
+        margin-bottom: 24px;
+    }
+    .filter-section_title {
+        font-weight: 600;
+        color: var(--text-primary);
+        margin: 0 0 12px 0;
+    }
+    .filter-section_content {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .filter-checkbox {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+    }
+    .filter-checkbox input {
+        cursor: pointer;
+        width: 18px;
+        height: 18px;
+    }
+    .filter-slider {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
+    .filter-slider input {
+        flex: 1;
+        height: 6px;
+        border-radius: 3px;
+        background: var(--border-color);
+        outline: none;
+        -webkit-appearance: none;
+    }
+    .filter-slider input::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        cursor: pointer;
+    }
+    .filter-slider input::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        cursor: pointer;
+        border: none;
+    }
+    .filter-slider_display {
+        min-width: 60px;
+        text-align: right;
+        color: var(--text-primary);
+        font-weight: 600;
+    }
+    .filter-select {
+        padding: 8px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+        cursor: pointer;
+        font-size: 0.9rem;
+    }
+    .filter-panel_footer {
+        display: flex;
+        gap: 12px;
+        margin-top: 24px;
+    }
+    .filter-panel_btn {
+        flex: 1;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .filter-panel_btn--primary {
+        background: var(--primary-color);
+        color: white;
+    }
+    .filter-panel_btn--primary:hover {
+        background: var(--primary-dark);
+    }
+    .filter-panel_btn--secondary {
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
+    }
+    .filter-panel_btn--secondary:hover {
+        background: var(--bg-tertiary);
+    }
+</style>
+
 <div class="filter-panel">
     <div class="filter-panel_header">
         <h2 class="filter-panel_title"><img src="../img/lejek.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Filtry</h2>
