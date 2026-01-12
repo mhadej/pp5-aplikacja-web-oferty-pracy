@@ -8,7 +8,7 @@ class JobCard extends HTMLElement {
         if (favoriteBtn) {
             favoriteBtn.classList.toggle('active', isFavorite);
             favoriteBtn.innerHTML = isFavorite
-                ? `<img src="../img/serce.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/>`
+                ? `<img src="img/serce.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/>`
                 : '🤍';
         }
         this.dataset.isFavorite = isFavorite ? 'true' : 'false';
@@ -20,7 +20,7 @@ class JobCard extends HTMLElement {
             compareBtn.classList.toggle('active', isInComparison);
             compareBtn.innerHTML = isInComparison
                 ? '✔️'
-                : `<img src="../img/waga.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/>`;
+                : `<img src="img/waga.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/>`;
         }
         this.dataset.isInComparison = isInComparison ? 'true' : 'false';
     }
@@ -95,7 +95,7 @@ class JobCard extends HTMLElement {
                 daysLeft === 1 ? 'dzień' : 'dni'
             }</span>`;
         } else {
-            expiryStatusHTML = `<span class="job-card_expires"><img src="../img/kalendarz.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Aktywna przez ${daysLeft} dni</span>`;
+            expiryStatusHTML = `<span class="job-card_expires"><img src="img/kalendarz.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Aktywna przez ${daysLeft} dni</span>`;
         }
 
         const languagesHTML =
@@ -283,7 +283,7 @@ class JobCard extends HTMLElement {
             }" data-action="favorite" title="Dodaj do ulubionych">
               ${
                   isFavorite
-                      ? '<img src="../img/serce.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/>'
+                      ? '<img src="img/serce.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/>'
                       : '🤍'
               }
             </button>
@@ -293,29 +293,29 @@ class JobCard extends HTMLElement {
               ${
                   isInComparison
                       ? '✔️'
-                      : '<img src="../img/waga.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/>'
+                      : '<img src="img/waga.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/>'
               }
             </button>
           </div>
         </div>
 
         <div class="job-card_company">
-          <span><img src="../img/budynek.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/></span>
+          <span><img src="img/budynek.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/></span>
           <span>${this.escapeHtml(company)}</span>
         </div>
 
         <div class="job-card_meta">
           <div class="job-card_meta-item">
-            <span><img src="../img/pinezka.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/></span>
+            <span><img src="img/pinezka.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/></span>
             <span>${this.escapeHtml(location)}</span>
           </div>
           <div class="job-card_meta-item">
-            <span><img src="../img/teczka.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/></span>
+            <span><img src="img/teczka.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/></span>
             <span>${this.escapeHtml(type)}</span>
           </div>
         </div>
 
-        <div class="job-card_salary"><img src="../img/pensja.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> ${salaryMin} - ${salaryMax} PLN</div>
+        <div class="job-card_salary"><img src="img/pensja.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> ${salaryMin} - ${salaryMax} PLN</div>
 
         <div>${expiryStatusHTML}</div>
 

@@ -32,7 +32,7 @@ class FilterModel extends HTMLElement {
             jobType === 'it'
                 ? `
             <div class="filter_section">
-                <h3 class="filter_title"><img src="../img/laptop.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Języki programowania</h3>
+                <h3 class="filter_title"><img src="img/laptop.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Języki programowania</h3>
                 <div class="filter_options">
                     ${PROGRAMMING_LANGUAGES.map(
                         (lang) => `
@@ -261,13 +261,13 @@ class FilterModel extends HTMLElement {
             <div class="overlay">
                 <div class="model">
                     <div class="model_header">
-                        <h2 class="model_title"><img src="../img/lejek.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Filtry</h2>
+                        <h2 class="model_title"><img src="img/lejek.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Filtry</h2>
                         <button class="model_close">✕</button>
                     </div>
                                         
                     <div class="model_body">
                         <div class="filter_section">
-                            <h3 class="filter_title"><img src="../img/pinezka.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Lokalizacja</h3>
+                            <h3 class="filter_title"><img src="img/pinezka.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Lokalizacja</h3>
                             <div class="filter_options">
                                 ${(availableFilters.locations || [])
                                     .map(
@@ -294,7 +294,7 @@ class FilterModel extends HTMLElement {
                         </div>
                                             
                         <div class="filter_section">
-                            <h3 class="filter_title"><img src="../img/alarm.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Typ umowy</h3>
+                            <h3 class="filter_title"><img src="img/alarm.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Typ umowy</h3>
                             <div class="filter_options">
                                 ${(availableFilters.types || [])
                                     .map(
@@ -321,7 +321,7 @@ class FilterModel extends HTMLElement {
                         </div>
                                                 
                         <div class="filter_section">
-                            <h3 class="filter_title"><img src="../img/pensja.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Wynagrodzenie</h3>
+                            <h3 class="filter_title"><img src="img/pensja.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Wynagrodzenie</h3>
                             <div class="filter_range">
                                 <input 
                                     type="number" 

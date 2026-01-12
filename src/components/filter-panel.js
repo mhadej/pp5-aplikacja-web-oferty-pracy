@@ -162,7 +162,7 @@ template.innerHTML = `
 
 <div class="filter-panel">
     <div class="filter-panel_header">
-        <h2 class="filter-panel_title"><img src="../img/lejek.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Filtry</h2>
+        <h2 class="filter-panel_title"><img src="img/lejek.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Filtry</h2>
         <button class="filter-panel_close">✕</button>
     </div>
 
@@ -176,17 +176,17 @@ template.innerHTML = `
     </div>
 
     <div class="filter-section">
-        <h3 class="filter-section_title"><img src="../img/pinezka.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Lokalizacja</h3>
+        <h3 class="filter-section_title"><img src="img/pinezka.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Lokalizacja</h3>
         <div class="filter-section_content" id="locationFilters"></div>
     </div>
 
     <div class="filter-section">
-        <h3 class="filter-section_title"><img src="../img/alarm.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Typ pracy</h3>
+        <h3 class="filter-section_title"><img src="img/alarm.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Typ pracy</h3>
         <div class="filter-section_content" id="typeFilters"></div>
     </div>
 
     <div class="filter-section">
-        <h3 class="filter-section_title"><img src="../img/pensja.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Zakresspensji</h3>
+        <h3 class="filter-section_title"><img src="img/pensja.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Zakresspensji</h3>
         <div class="filter-slider">
             <input type="range" id="salaryMin" min="0" max="50000" step="1000">
             <input type="range" id="salaryMax" min="0" max="50000" step="1000">
@@ -197,7 +197,7 @@ template.innerHTML = `
     </div>
 
     <div class="filter-section">
-        <h3 class="filter-section_title"><img src="../img/laptop.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Wymagane umiejętności</h3>
+        <h3 class="filter-section_title"><img src="img/laptop.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Wymagane umiejętności</h3>
         <div class="filter-section_content" id="requirementFilters"></div>
     </div>
 
