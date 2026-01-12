@@ -1,9 +1,8 @@
-
+/* Zmienne */
 :root {
   /* Ciemne */
   --primary-color: #7c3aed;
   --primary-dark: #6d28d9;
-  --accent-color: #06b6d4;
   --text-primary: #f3f4f6;
   --text-secondary: #d1d5db;
   --bg-primary: #0f172a;
@@ -11,9 +10,6 @@
   --bg-tertiary: #334155;
   --bg-card: #1e293b;
   --border-color: #334155;
-  --success-color: #10b981;
-  --error-color: #ef4444;
-  --warning-color: #f59e0b;
   --card-color: #292b35;
   --salary-color: #a45ac7;
 }
@@ -22,7 +18,6 @@
   /* Jasne */
   --primary-color: #8b5cf6;
   --primary-dark: #7c3aed;
-  --accent-color: #0891b2;
   --text-primary: #1f2937;
   --text-secondary: #6b7280;
   --bg-primary: #ffffff;
@@ -30,14 +25,11 @@
   --bg-tertiary: #e5e7eb;
   --bg-card: #ffffff;
   --border-color: #e5e7eb;
-  --success-color: #059669;
-  --error-color: #dc2626;
-  --warning-color: #d97706;
   --card-color: #6b35ff18;
   --salary-color: #3259c6;
 }
 
-
+/* Ogólne */
 
 * {
   margin: 0;
@@ -52,14 +44,14 @@ html {
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Helvetica Neue', sans-serif;
+  'Helvetica Neue', sans-serif;
   background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.5;
   transition: background 0.3s, color 0.3s;
 }
 
-
+/* Header + zmiana theme */
 
 .header {
   background: var(--bg-card);
@@ -105,12 +97,10 @@ body {
   font-size: 1.2rem;
   cursor: pointer;
   transition: all 0.2s;
+  &:hover {
+    background-color: var(--bg-tertiary);
+  }
 }
-
-.header_theme:hover {
-  background: var(--bg-tertiary);
-}
-
 
 
 .main {
@@ -118,7 +108,7 @@ body {
   margin: 0 auto;
 }
 
-
+/* Kategoria - cały div */
 
 .job-selector {
   background: var(--bg-secondary);
@@ -129,13 +119,15 @@ body {
 .job-selector_container {
   max-width: 1400px;
   margin: 0 auto;
-}
 
-.job-selector_container h2 {
+  & h2 {
   font-size: 1.8rem;
   margin-bottom: 24px;
   color: var(--text-primary);
 }
+}
+
+/* Zmiana ofert */
 
 .job-selector_buttons {
   display: flex;
@@ -157,12 +149,12 @@ body {
   align-items: center;
   gap: 8px;
   transition: all 0.3s;
-}
 
-.job-selector_btn:hover {
-  border-color: var(--primary-color);
-  transform: translateY(-2px);
-  background: rgba(59, 130, 246, 0.1);
+  &:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    background: rgba(59, 130, 246, 0.1);
+  }
 }
 
 .job-selector_btn--active {
@@ -170,8 +162,9 @@ body {
   color: var(--primary-color);
   border-color: var(--primary-color);
 }
+/* koniec wybierz kategorie */
 
-
+/* Pasek ulubione/filtry/etc */
 
 .controls {
   background: var(--bg-card);
@@ -206,20 +199,18 @@ body {
   background: var(--bg-secondary);
   color: var(--text-primary);
   font-size: 0.9rem;
+  
+  &::placeholder {
+    color: var(--text-secondary);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: var(--bg-secondary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
 }
-
-.controls_search::placeholder {
-  color: var(--text-secondary);
-}
-
-.controls_search:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  background: var(--bg-secondary);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-
 
 .btn {
   padding: 10px 16px;
@@ -235,23 +226,25 @@ body {
 .btn--primary {
   background: var(--primary-color);
   color: white;
+  
+  &:hover {
+    background-color: var(--primary-dark);
+  }
 }
 
-.btn--primary:hover {
-  background: var(--primary-dark);
-}
 
 .btn--secondary {
   background: var(--bg-secondary);
   color: var(--text-primary);
   border: 1px solid var(--border-color);
+  
+  &:hover {
+    background-color: var(--bg-tertiary);
+    border-color: var(--primary-color);
+  }
 }
 
-.btn--secondary:hover {
-  background: var(--bg-tertiary);
-  border-color: var(--primary-color);
-}
-
+/* ładowanie ofert */
 
 
 .loading {
@@ -273,14 +266,8 @@ body {
   animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
 
-
-
+/* Błąd - komunikat */
 .empty-state {
   text-align: center;
   padding: 80px 20px;
@@ -292,8 +279,6 @@ body {
   justify-content: center;
 }
 
-
-
 .jobs-grid {
   display: grid;
   gap: 55px 15px;
@@ -304,58 +289,55 @@ body {
   margin: 0 auto;
 }
 
+/* responsywność */
 @media (max-width: 768px) {
   .jobs-grid {
     grid-template-columns: 1fr;
     gap: 16px;
     padding: 16px;
   }
-}
-
-
-
-@media (max-width: 768px) {
   .header_container {
     padding: 12px 16px;
   }
-
+  
   .header_title {
     font-size: 1.4rem;
   }
-
+  
   .controls_container {
     flex-direction: column;
     gap: 12px;
   }
-
+  
   .controls_left {
     width: 100%;
     justify-content: space-between;
   }
-
+  
   .controls_search {
     width: 100%;
   }
-
+  
   .job-selector_btn {
     padding: 12px 20px;
     font-size: 1rem;
   }
-
+  
   .job-selector_container h2 {
     font-size: 1.4rem;
   }
 }
 
+
 @media (max-width: 480px) {
   .controls_left {
     flex-direction: column;
   }
-
+  
   .controls_left .btn {
     width: 100%;
   }
-
+  
   .jobs-grid {
     grid-template-columns: 1fr;
     gap: 12px;
@@ -363,7 +345,12 @@ body {
   }
 }
 
-
+/* animacje */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 @keyframes fadeIn {
   from {

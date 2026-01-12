@@ -25,14 +25,7 @@ template.innerHTML = `
         max-height: 80vh;
         overflow-y: auto;
     }
-    @media (min-width: 1024px) {
-        :host.open .filter-panel {
-            position: relative;
-            width: auto;
-            border-radius: 12px;
-            margin: auto;
-        }
-    }
+
     .filter-panel_header {
         display: flex;
         justify-content: space-between;
@@ -67,42 +60,48 @@ template.innerHTML = `
         align-items: center;
         gap: 8px;
         cursor: pointer;
+
+        &input {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
     }
-    .filter-checkbox input {
-        cursor: pointer;
-        width: 18px;
-        height: 18px;
-    }
+    
     .filter-slider {
         display: flex;
         gap: 12px;
         align-items: center;
+
+        &input {
+            flex: 1;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--border-color);
+            outline: none;
+            -webkit-appearance: none;
+
+            &::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 18px;
+                height: 18px;
+                border-radius: 50%;
+                background: var(--primary-color);
+                cursor: pointer;
+            }
+            
+            &::-moz-range-thumb {
+                width: 18px;
+                height: 18px;
+                border-radius: 50%;
+                background: var(--primary-color);
+                cursor: pointer;
+                border: none;
+            }
+        }
     }
-    .filter-slider input {
-        flex: 1;
-        height: 6px;
-        border-radius: 3px;
-        background: var(--border-color);
-        outline: none;
-        -webkit-appearance: none;
-    }
-    .filter-slider input::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background: var(--primary-color);
-        cursor: pointer;
-    }
-    .filter-slider input::-moz-range-thumb {
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background: var(--primary-color);
-        cursor: pointer;
-        border: none;
-    }
+
     .filter-slider_display {
         min-width: 60px;
         text-align: right;
@@ -135,18 +134,30 @@ template.innerHTML = `
     .filter-panel_btn--primary {
         background: var(--primary-color);
         color: white;
+
+        &:hover {
+            background: var(--primary-dark);
+        }
     }
-    .filter-panel_btn--primary:hover {
-        background: var(--primary-dark);
-    }
+
     .filter-panel_btn--secondary {
         background: var(--bg-secondary);
         color: var(--text-primary);
         border: 1px solid var(--border-color);
+
+        &:hover {
+            background: var(--bg-tertiary);
+        }
     }
-    .filter-panel_btn--secondary:hover {
-        background: var(--bg-tertiary);
-    }
+
+    @media (min-width: 1024px) {
+        :host.open .filter-panel {
+            position: relative;
+            width: auto;
+            border-radius: 12px;
+            margin: auto;
+        }
+    }   
 </style>
 
 <div class="filter-panel">

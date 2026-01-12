@@ -49,13 +49,13 @@ class FilterModel extends HTMLElement {
                             />
                             <span>${lang}</span>
                         </label>
-                    `
-                    ).join('')}
-                </div>
+                `
+                ).join('')}
             </div>
-        `
-                : '';
-
+        </div>
+    `
+            : '';
+                
         shadow.innerHTML = `
             <style>
                 :host {
@@ -72,20 +72,12 @@ class FilterModel extends HTMLElement {
                     bottom: 0;
                     background: rgba(0, 0, 0, 0.5);
                     display: flex;
-                    align-items: flex-end;
+                    align-items: center;
+                    justify-content: center;
                     z-index: 1000;
                     animation: fadeIn 0.2s;
                 }
-                @media (min-width: 768px) {
-                    .overlay {
-                        align-items: center;
-                        justify-content: center;
-                    }
-                }
-                @keyframes fadeIn {
-                    from { opacity: 0; }
-                    to { opacity: 1; }
-                }
+     
                 .model {
                     background: var(--bg-card);
                     border-radius: 12px 12px 0 0;
@@ -97,20 +89,8 @@ class FilterModel extends HTMLElement {
                     animation: slideUp 0.3s;
                     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
                 }
-                @media (min-width: 768px) {
-                    .model {
-                        border-radius: 12px;
-                        width: 90%;
-                    }
-                }
-                @keyframes slideUp {
-                    from {
-                        transform: translateY(100%);
-                    }
-                    to {
-                        transform: translateY(0);
-                    }
-                }
+  
+
                 .model_header {
                     padding: 20px;
                     border-bottom: 1px solid var(--border-color);
@@ -137,6 +117,7 @@ class FilterModel extends HTMLElement {
                 .model_body {
                     padding: 20px;
                 }
+
                 .filter_section {
                     margin-bottom: 24px;
                 }
@@ -153,36 +134,46 @@ class FilterModel extends HTMLElement {
                     max-height: 300px;
                     overflow-y: auto;
                     padding-right: 8px;
+
+                    &::-webkit-scrollbar {
+                        width: 6px;
+                        background: var(--primary-dark);
+                    }
+
+                    &::-webkit-scrollbar-track {
+                        background: var(--bg-secondary);
+                        border-radius: 3px;
+                    }
+
+                    &::-webkit-scrollbar-thumb {
+                        background: var(--border-color);
+                        border-radius: 3px;
+
+                        &:hover{
+                            background: var(--primary-color);
+                        }
+                    }
+                    
                 }
-                .filter_options::-webkit-scrollbar {
-                    width: 6px;
-                }
-                .filter_options::-webkit-scrollbar-track {
-                    background: var(--bg-secondary);
-                    border-radius: 3px;
-                }
-                .filter_options::-webkit-scrollbar-thumb {
-                    background: var(--border-color);
-                    border-radius: 3px;
-                }
-                .filter_options::-webkit-scrollbar-thumb:hover {
-                    background: var(--primary-color);
-                }
+
                 .filter_checkbox {
                     display: flex;
                     align-items: center;
                     gap: 8px;
                     cursor: pointer;
                     user-select: none;
+
+                    & input {
+                        cursor: pointer;
+                        width: 18px;
+                        height: 18px;
+                    }
+
+                    & span {
+                        color: var(--text-primary);
+                    }
                 }
-                .filter_checkbox input {
-                    cursor: pointer;
-                    width: 18px;
-                    height: 18px;
-                }
-                .filter_checkbox span {
-                    color: var(--text-primary);
-                }
+
                 .filter_range {
                     display: flex;
                     gap: 12px;
@@ -221,30 +212,59 @@ class FilterModel extends HTMLElement {
                     cursor: pointer;
                     transition: all 0.2s;
                 }
+                    
                 .model_btn--primary {
                     background: var(--primary-color);
                     color: white;
-                }
-                .model_btn--primary:hover {
-                    background: var(--primary-dark);
+
+                    &:hover {
+                        background: var(--primary-dark);
+                    }
                 }
                 .model_btn--secondary {
                     background: var(--bg-secondary);
                     color: var(--text-primary);
                     border: 1px solid var(--border-color);
+                    
+                    &:hover {
+                        background: var(--bg-tertiary);
+                    }    
                 }
-                .model_btn--secondary:hover {
-                    background: var(--bg-tertiary);
+                    
+                @media (min-width: 768px) {
+                    .overlay {
+                        align-items: important;
+                        justify-content: center;
+                    }
+                    .model {
+                        border-radius: 12px;
+                        width: 90%;
+                    }
+                }
+
+               
+                // animacje
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+                @keyframes slideUp {
+                    from {
+                        transform: translateY(100%);
+                    }
+                    to {
+                        transform: translateY(0);
+                    } 
                 }
             </style>
-
+                                        
             <div class="overlay">
                 <div class="model">
                     <div class="model_header">
                         <h2 class="model_title"><img src="../img/lejek.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Filtry</h2>
                         <button class="model_close">✕</button>
                     </div>
-                    
+                                        
                     <div class="model_body">
                         <div class="filter_section">
                             <h3 class="filter_title"><img src="../img/pinezka.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Lokalizacja</h3>
@@ -263,7 +283,7 @@ class FilterModel extends HTMLElement {
                                                 )
                                                     ? 'checked'
                                                     : ''
-                                            }
+                                            }   
                                         />
                                         <span>${loc}</span>
                                     </label>
@@ -272,7 +292,7 @@ class FilterModel extends HTMLElement {
                                     .join('')}
                             </div>
                         </div>
-
+                                            
                         <div class="filter_section">
                             <h3 class="filter_title"><img src="../img/alarm.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Typ umowy</h3>
                             <div class="filter_options">
@@ -299,7 +319,7 @@ class FilterModel extends HTMLElement {
                                     .join('')}
                             </div>
                         </div>
-
+                                                
                         <div class="filter_section">
                             <h3 class="filter_title"><img src="../img/pensja.png" style="width: 1.6rem; height: 1.6rem; vertical-align: middle"/> Wynagrodzenie</h3>
                             <div class="filter_range">
@@ -323,10 +343,10 @@ class FilterModel extends HTMLElement {
                                 <span class="filter_range-value">PLN</span>
                             </div>
                         </div>
-
+                                                
                         ${languagesHTML}
                     </div>
-                    
+                                                
                     <div class="model_footer">
                         <button class="model_btn model_btn--secondary" data-action="reset">Resetuj</button>
                         <button class="model_btn model_btn--primary" data-action="apply">Zastosuj</button>
@@ -334,21 +354,21 @@ class FilterModel extends HTMLElement {
                 </div>
             </div>
         `;
-
+                                                
         this.classList.add('open');
         this.setupEventListeners();
     }
-
+                                            
     setupEventListeners() {
         const closeBtn = this.shadowRoot.querySelector('.model_close');
         const overlay = this.shadowRoot.querySelector('.overlay');
         const applyBtn = this.shadowRoot.querySelector('[data-action="apply"]');
         const resetBtn = this.shadowRoot.querySelector('[data-action="reset"]');
-
+                                                
         if (closeBtn) {
             closeBtn.addEventListener('click', () => this.close());
         }
-
+                                                
         if (overlay) {
             overlay.addEventListener('click', (e) => {
                 if (e.target === overlay) this.close();

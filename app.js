@@ -192,22 +192,6 @@ function showFavorites() {
     filterAndRender();
 }
 
-function showComparison() {
-    const comparisonIds = store.getComparison();
-
-    if (comparisonIds.length === 0) {
-        alert('Wybierz oferty do porównania');
-        return;
-    }
-
-    const jobsToCompare = comparisonIds
-        .map((id) => allJobs.find((j) => j.id === id))
-        .filter(Boolean);
-
-    if (jobsToCompare.length > 0) {
-        comparisonModel?.show(jobsToCompare);
-    }
-}
 
 function updateViewButtons() {
     if (favoritesBtn) {

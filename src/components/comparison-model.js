@@ -63,14 +63,15 @@ export default class ComparisonModel extends HTMLElement {
           border-bottom: 1px solid rgba(255, 255, 255, 0.1);
           padding-bottom: 15px;
           gap: 15px;
+
+          h2 {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 24px;
+            flex: 1;
+          }
         }
 
-        .comparison-header h2 {
-          margin: 0;
-          color: rgba(255, 255, 255, 0.95);
-          font-size: 24px;
-          flex: 1;
-        }
 
         .comparison-count {
           background: var(--primary-color);
@@ -95,11 +96,11 @@ export default class ComparisonModel extends HTMLElement {
           align-items: center;
           justify-content: center;
           transition: all 0.2s ease;
-        }
 
-        .comparison-close:hover {
-          color: rgba(255, 255, 255, 0.95);
-          transform: scale(1.1);
+          &:hover {
+            color: rgba(255, 255, 255, 0.95);
+            transform: scale(1.1);
+          }
         }
 
         .comparison-content {
@@ -161,29 +162,32 @@ export default class ComparisonModel extends HTMLElement {
           background: rgba(255, 255, 255, 0.05);
           color: rgba(255, 255, 255, 0.8);
           border: 1px solid rgba(255, 255, 255, 0.2);
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+          }
         }
 
-        .btn-close:hover {
-          background: rgba(255, 255, 255, 0.1);
-          border-color: rgba(255, 255, 255, 0.3);
-        }
 
         .btn-clear {
           background: linear-gradient(135deg, var(--primary-dark), #3c197e);
           color: white;
           border: none;
+
+          &:hover {
+            background: linear-gradient(235deg, var(--primary-dark), #3c197e);
+            box-shadow: 0 4px 12px black;
+            transform: translateY(-2px);
+          }
+          
+          &:active {
+            transform: translateY(0);
+          }
         }
 
-        .btn-clear:hover {
-          background: linear-gradient(235deg, var(--primary-dark), #3c197e);
-          box-shadow: 0 4px 12px black;
-          transform: translateY(-2px);
-        }
-
-        .btn-clear:active {
-          transform: translateY(0);
-        }
       </style>
+      
       <div class="comparison-model">
         <div class="comparison-header">
           <h2>Porównanie ofert</h2>

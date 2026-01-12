@@ -124,11 +124,11 @@ class JobModel extends HTMLElement {
           border-radius: 4px;
           transition: all 0.2s ease;
           flex-shrink: 0;
-        }
 
-        .model_close:hover {
-          background: rgba(255, 255, 255, 0.1);
-          color: rgba(255, 255, 255, 0.9);
+          &:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.9);
+          }
         }
 
         .model_title {
@@ -139,18 +139,12 @@ class JobModel extends HTMLElement {
           line-height: 1.4;
         }
 
-        .model_body {
-          padding: 24px;
-          flex: 1;
-          overflow-y: auto;
-        }
-
         .section {
           margin-bottom: 24px;
-        }
 
-        .section:last-child {
-          margin-bottom: 0;
+          &:last-child {
+            margin-bottom: 0;
+          }
         }
 
         .section_label {
@@ -214,41 +208,49 @@ class JobModel extends HTMLElement {
           transition: all 0.2s ease;
         }
 
-        .btn--primary {
+        .btn--porownaj {
           background: var(--primary-color);
           color: #fff;
+
+          &:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+          }
         }
 
-        .btn--primary:hover {
-          opacity: 0.9;
-          transform: translateY(-2px);
-        }
-
-        .btn--secondary {
+        .btn--opcje {
           background: rgba(255, 255, 255, 0.1);
           color: rgba(255, 255, 255, 0.9);
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.15);
+          }
         }
 
-        .btn--secondary:hover {
-          background: rgba(255, 255, 255, 0.15);
-        }
+      
+        .model_body {
+          padding: 24px;
+          flex: 1;
+          overflow-y: auto;
 
-        .model_body::-webkit-scrollbar {
-          width: 8px;
-        }
+          &::-webkit-scrollbar {
+            width: 8px;
+          }
 
-        .model_body::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.05);
-        }
+          &::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+          }
 
-        .model_body::-webkit-scrollbar-thumb {
-          background: rgba(255, 255, 255, 0.2);
-          border-radius: 4px;
-        }
+          &::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+          }
 
-        .model_body::-webkit-scrollbar-thumb:hover {
-          background: rgba(255, 255, 255, 0.3);
+          &::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+          }
         }
+        
       </style>
       
       <div class="overlay"></div>
