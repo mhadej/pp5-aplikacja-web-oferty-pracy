@@ -266,7 +266,7 @@ class JobModel extends HTMLElement {
             <div class="info-item">
               <div class="info-item_label">
                 <img
-                    src="../img/pinezka.png"
+                    src="img\pinezka.png"
                     style="width: 1.6rem; height: 1.6rem; vertical-align: middle"
                 />
                 Lokalizacja
@@ -278,7 +278,7 @@ class JobModel extends HTMLElement {
             <div class="info-item">
               <div class="info-item_label">
                 <img
-                    src="../img/budynek.png"
+                    src="img\budynek.png"
                     style="width: 1.6rem; height: 1.6rem; vertical-align: middle"
                 />
                 Firma</div>
@@ -289,7 +289,7 @@ class JobModel extends HTMLElement {
             <div class="info-item">
               <div class="info-item_label">
                 <img
-                    src="../img/teczka.png"
+                    src="img\teczka.png"
                     style="width: 1.6rem; height: 1.6rem; vertical-align: middle"
                 />
                 Typ Umowy</div>
@@ -298,7 +298,7 @@ class JobModel extends HTMLElement {
             <div class="info-item">
               <div class="info-item_label">
                 <img
-                    src="../img/pensja.png"
+                    src="img\pensja.png"
                     style="width: 1.6rem; height: 1.6rem; vertical-align: middle"
                 />
                 Wynagrodzenie</div>
@@ -311,7 +311,7 @@ class JobModel extends HTMLElement {
           <div class="section">
             <div class="section_label">
                 <img
-                    src="../img/kalendarz.png"
+                    src="img\kalendarz.png"
                     style="width: 1.6rem; height: 1.6rem; vertical-align: middle"
                 />
                 Data Opublikowania</div>
@@ -321,7 +321,7 @@ class JobModel extends HTMLElement {
           <div class="section">
             <div class="section_label">
                 <img
-                    src="../img/alarm.png"
+                    src="img/alarm.png"
                     style="width: 1.6rem; height: 1.6rem; vertical-align: middle"
                 />
                 Data Końca Rekrutacji</div>
@@ -345,7 +345,7 @@ class JobModel extends HTMLElement {
             <div class="section">
               <div class="section_label">
                 <img
-                    src="../img/prezent.png"
+                    src="../../img/prezent.png"
                     style="width: 1.6rem; height: 1.6rem; vertical-align: middle"
                 />
                 Benefity</div>
